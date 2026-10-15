@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOLI PRO | گل یا پوچ آنلاین</title>
+<style>
+:root{--bg:#0b0b16;--panel:#151528;--panel2:#20203a;--line:#343451;--text:#f5f5ff;--muted:#aaaac5;--cyan:#71f5e8;--pink:#ff70b7;--gold:#ffd36b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#25204b 0,#0b0b16 58%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:13px;padding:12px 15px;font-weight:700;transition:.18s}button:hover{transform:translateY(-2px);filter:brightness(1.08)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.wrap{max-width:1100px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.brand{font-size:25px;font-weight:900;letter-spacing:1px;color:var(--cyan)}.brand small{display:block;font-size:12px;letter-spacing:0;color:var(--muted);margin-top:5px}.pill{border:1px solid var(--line);background:#151528;border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.card{background:linear-gradient(160deg,rgba(29,29,54,.97),rgba(17,17,32,.97));border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 14px 40px #0003}.card h2{font-size:18px;margin:0 0 14px}.muted{color:var(--muted);font-size:13px;line-height:1.9}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:120px}.primary{background:linear-gradient(100deg,#55ebd9,#77b8ff);color:#101022}.secondary{background:#303052;color:white;border:1px solid #46466b}.pink{background:linear-gradient(100deg,#ff70b7,#ff9a80);color:#240e20}.gold{background:linear-gradient(100deg,#ffd36b,#ffab60);color:#27180a}input,select{width:100%;background:#0d0d1b;color:white;border:1px solid var(--line);border-radius:12px;padding:12px;outline:none;margin:7px 0 12px}label{font-size:12px;color:var(--muted)}.hide{display:none!important}.status{padding:12px;border-radius:13px;background:#0e1f26;color:var(--cyan);font-size:13px;line-height:1.8;margin-top:12px;word-break:break-word}.scoreboard{display:flex;gap:10px;margin:14px 0}.scorebox{flex:1;background:#101022;border:1px solid var(--line);border-radius:16px;padding:13px;text-align:center}.scorebox strong{display:block;font-size:26px;color:var(--gold);margin-top:6px}.arena{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:18px 0}.side{text-align:center;background:#101022;border:1px solid var(--line);border-radius:18px;padding:16px 8px}.avatar{font-size:38px}.side h3{font-size:14px;margin:8px 0}.hands{display:flex;gap:8px;justify-content:center;margin-top:12px}.hand{font-size:33px;background:#272743;border:1px solid #444466;border-radius:13px;padding:10px 12px;min-width:62px}.hand.pick{border-color:var(--cyan);box-shadow:0 0 0 2px #71f5e822}.vs{color:var(--pink);font-weight:900}.flowergrid,.skingrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.flower,.skin{background:#101022;border:1px solid var(--line);border-radius:13px;padding:12px 5px;text-align:center;color:white}.flower .emoji,.skin .emoji{font-size:27px;display:block;margin-bottom:5px}.selected{border-color:var(--cyan)!important;box-shadow:0 0 0 2px #71f5e833}.log{height:120px;overflow:auto;background:#0c0c18;border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12px;line-height:1.9;color:#c9c9e1}.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.video-grid video{width:100%;background:#05050b;border-radius:12px;min-height:110px;object-fit:cover}.foot{text-align:center;color:#747493;font-size:11px;padding:20px}.tag{font-size:11px;background:#302546;color:#ffc1e0;border-radius:7px;padding:5px 8px;display:inline-block}
+@media(max-width:780px){.grid{grid-template-columns:1fr}.wrap{padding:12px}.card{padding:16px}.brand{font-size:22px}.arena{gap:5px}.hand{min-width:48px;padding:9px 5px}.flowergrid,.skingrid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">🌹 GOLI PRO <small>گل یا پوچ آنلاین • بازی با رفیق‌ها</small></div><div class="pill" id="connection">● در حال اتصال...</div></header>
+<div class="grid">
+<section class="card">
+<h2>🎮 اتاق بازی</h2>
+<p class="muted">اتاق بساز، لینک دعوت را برای دوستت بفرست و آنلاین بازی کن. برای چندنفره واقعی، سرور باید منتشر شده باشد.</p>
+<div class="row"><button class="primary" id="createRoom">＋ ساخت اتاق خصوصی</button><button class="secondary" id="botGame">🤖 بازی با ربات</button></div>
+<label for="roomInput">کد اتاق دوستت</label><input id="roomInput" maxlength="8" placeholder="مثلاً A1B2C3">
+<button class="pink" id="joinRoom" style="width:100%">🚪 ورود به اتاق</button>
+<div id="inviteBox" class="status hide"><b>لینک دعوت:</b><br><span id="inviteLink"></span><button class="gold" id="copyInvite" style="width:100%;margin-top:9px">📋 کپی لینک دعوت</button></div>
+<div id="roomStatus" class="status">برای شروع، اتاق بساز یا با ربات بازی کن.</div>
+<hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+<h2>🌷 انتخاب گل</h2><div class="flowergrid" id="flowers"></div>
+<h2 style="margin-top:18px">🧤 اسکین دست</h2><div class="skingrid" id="skins"></div>
+<h2 style="margin-top:18px">🃏 کارت‌های بازی</h2>
+<div class="row"><button class="secondary cardPick" data-card="normal">🎴 عادی</button><button class="secondary cardPick" data-card="double">✨ امتیاز دوبرابر*</button><button class="secondary cardPick" data-card="shield">🛡️ سپر نمایشی*</button></div>
+<p class="muted">* کارت‌های ویژه فقط در حالت تمرینی نمایشی‌اند و فعلاً روی امتیاز آنلاین اثر ندارند.</p>
+</section>
+<section class="card">
+<h2>⚔️ میدان بازی <span class="tag" id="modeTag">تک‌نفره</span></h2>
+<div class="scoreboard"><div class="scorebox">👤 تو<strong id="myScore">0</strong></div><div class="scorebox">🤖 / 👥 حریف<strong id="oppScore">0</strong></div></div>
+<div class="arena">
+<div class="side"><div class="avatar" id="myAvatar">🧑‍🚀</div><h3 id="myName">تو</h3><div class="muted">انتخاب تو</div><div class="hands"><button class="hand" data-hand="0" aria-label="دست اول">✊</button><button class="hand" data-hand="1" aria-label="دست دوم">✊</button><button class="hand hide" data-hand="2" aria-label="دست سوم">✊</button></div></div>
+<div class="vs">VS</div>
+<div class="side"><div class="avatar" id="oppAvatar">🤖</div><h3 id="oppName">ربات</h3><div class="muted">دست‌های حریف</div><div class="hands" id="oppHands"><span class="hand">✊</span><span class="hand">✊</span></div></div>
+</div>
+<p class="muted" id="gameHelp">حالت ربات: گل را در یکی از دو دست پنهان کن، سپس ربات حدس می‌زند.</p>
+<div class="row"><button class="primary" id="hideFlower">🌹 پنهان‌کردن گل</button><button class="secondary" id="guessFlower">🔍 حدس دست</button></div>
+<div class="row" style="margin-top:10px"><button class="secondary" id="nextRound">دور بعدی</button><button class="pink" id="resetGame">ریست امتیاز</button></div>
+<div id="gameStatus" class="status">برای بازی، گل و اسکینت را انتخاب کن.</div>
+<h2 style="margin-top:20px">📹 دوربین و میکروفون</h2>
+<p class="muted">با اجازه خودت، دوربین/میکروفون دستگاه روشن می‌شود. در این نسخه پیش‌نمایش محلی فعال است؛ ارسال زنده تصویر به بازیکن دیگر هنوز به اتصال WebRTC کامل نیاز دارد.</p>
+<div class="row"><button class="secondary" id="cameraOn">📷 روشن‌کردن دوربین</button><button class="secondary" id="cameraOff">⏹ خاموش‌کردن</button></div>
+<div class="video-grid" style="margin-top:10px"><video id="localVideo" autoplay playsinline muted></video><div class="side"><div class="avatar">📡</div><div class="muted">تصویر دوستت پس از راه‌اندازی تماس WebRTC نمایش داده می‌شود.</div></div></div>
+<h2 style="margin-top:18px">📜 گزارش بازی</h2><div class="log" id="log">بازی آماده است.</div>
+</section>
+</div>
+<div class="foot">GOLI PRO • نسخه آزمایشی قابل توسعه • بازی جوانمردانه 🌹</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const flowerOptions=[["🌹","رز قرمز"],["🌷","لاله"],["🌻","آفتابگردان"],["🌸","شکوفه"],["💙","رز آبی"],["💎","کریستالی"]];
+const skinOptions=[["✊","کلاسیک"],["🧤","دستکش"],["🥊","بوکس"],["⚡","نئونی"],["🔥","آتشین"],["👑","سلطنتی"]];
+let flower=flowerOptions[0][0], skin=skinOptions[0][0], roomCode=null, online=false, botMode=false, hiddenHand=null, selectedHand=0, scores=[0,0], selectedCard="normal", stream=null, mySocketId=null;
+let socket=null;
+try{socket=io();socket.on("connect",()=>{$("#connection").textContent="● متصل به سرور";mySocketId=socket.id;});socket.on("disconnect",()=>$("#connection").textContent="● قطع اتصال");socket.on("room-created",d=>{roomCode=d.code;online=true;botMode=false;$("#roomInput").value=d.code;showInvite();$("#roomStatus").textContent="اتاق ساخته شد. لینک را برای دوستت بفرست.";$("#modeTag").textContent="آنلاین";log("اتاق "+d.code+" ساخته شد.");});socket.on("room-joined",d=>{roomCode=d.code;online=true;botMode=false;showInvite();$("#roomStatus").textContent="وارد اتاق "+d.code+" شدی.";$("#modeTag").textContent="آنلاین";log("وارد اتاق شدی.");});socket.on("room-update",d=>{const names=d.players.map((p,i)=>p.name||("بازیکن "+(i+1)));$("#oppName").textContent=names.filter((n,i)=>d.players[i].id!==mySocketId).join("، ")||"منتظر بازیکن";$("#oppAvatar").textContent=d.players.length>1?"👥":"⏳";$("#roomStatus").textContent="بازیکنان اتاق: "+d.players.length+" / "+d.maxPlayers;});socket.on("online-round",d=>{if(d.result){$("#gameStatus").textContent=d.result;log(d.result);}if(d.scores){scores=d.scores;$("#myScore").textContent=scores[0];$("#oppScore").textContent=scores[1];}});socket.on("server-message",m=>{ $("#roomStatus").textContent=m;log(m);});socket.on("opponent-hidden",()=>{$("#gameStatus").textContent="حریف گل را پنهان کرد؛ نوبت حدس توست.";});socket.on("round-result",d=>{ $("#gameStatus").textContent=d.message;log(d.message);if(d.scores){$("#myScore").textContent=d.scores[0];$("#oppScore").textContent=d.scores[1];}});socket.on("error-message",m=>{ $("#roomStatus").textContent=m;log(m);});}catch(e){$("#connection").textContent="● حالت آفلاین";}
+function log(t){const el=$("#log");el.innerHTML+="<br>› "+String(t).replace(/[<>]/g,"");el.scrollTop=el.scrollHeight;}
+function showInvite(){let u=location.origin+location.pathname+"?room="+roomCode;$("#inviteBox").classList.remove("hide");$("#inviteLink").textContent=u;}
+function setupChoices(id,opts,cls,fn){$(id).innerHTML=opts.map((x,i)=>`<button class="${cls}" data-i="${i}"><span class="emoji">${x[0]}</span>${x[1]}</button>`).join("");$$(id+" button").forEach(b=>b.onclick=()=>{fn(opts[+b.dataset.i][0]);$$(id+" button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");});}
+setupChoices("#flowers",flowerOptions,"flower",v=>{flower=v;$("#gameStatus").textContent="گل انتخاب شد: "+v;});
+setupChoices("#skins",skinOptions,"skin",v=>{skin=v;$("#myAvatar").textContent=v;$$("[data-hand]").forEach(b=>b.textContent=v);});
+$$(".cardPick").forEach(b=>b.onclick=()=>{selectedCard=b.dataset.card;$$(".cardPick").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");log("کارت انتخاب شد: "+selectedCard);});
+$("#createRoom").onclick=()=>{if(!socket?.connected){$("#roomStatus").textContent="برای اتاق آنلاین باید پروژه روی سرور منتشر شده و متصل باشد.";return;}socket.emit("create-room",{name:"بازیکن",maxPlayers:2});};
+$("#joinRoom").onclick=()=>{let c=$("#roomInput").value.trim().toUpperCase();if(!c)return $("#roomStatus").textContent="کد اتاق را وارد کن.";if(!socket?.connected)return $("#roomStatus").textContent="سرور آنلاین در دسترس نیست.";socket.emit("join-room",{code:c,name:"مهمان"});};
+$("#copyInvite").onclick=async()=>{try{await navigator.clipboard.writeText($("#inviteLink").textContent);$("#copyInvite").textContent="✅ کپی شد";}catch(e){prompt("لینک دعوت را کپی کن:",$("#inviteLink").textContent);}};
+$("#botGame").onclick=()=>{botMode=true;online=false;roomCode=null;$("#modeTag").textContent="در برابر ربات";$("#oppName").textContent="ربات";$("#oppAvatar").textContent="🤖";$("#roomStatus").textContent="حالت ربات فعال شد.";$("#inviteBox").classList.add("hide");scores=[0,0];updateScores();log("شروع بازی با ربات.");};
+function updateScores(){$("#myScore").textContent=scores[0];$("#oppScore").textContent=scores[1];}
+$("#hideFlower").onclick=()=>{if(online&&socket?.connected){hiddenHand=selectedHand;socket.emit("hide-flower",{hand:selectedHand,flower,skin});$("#gameStatus").textContent="گل در دست انتخاب‌شده پنهان شد؛ منتظر حدس حریف.";return;}if(!botMode){$("#gameStatus").textContent="اول با ربات بازی کن یا وارد اتاق آنلاین شو.";return;}hiddenHand=selectedHand;$("#gameStatus").textContent="گل در دست "+(selectedHand+1)+" پنهان شد. حالا حدس بزن!";log("گل پنهان شد.");};
+$("#guessFlower").onclick=()=>{if(online&&socket?.connected){socket.emit("guess-hand",{hand:selectedHand});$("#gameStatus").textContent="حدس دست "+(selectedHand+1)+" ارسال شد.";return;}if(!botMode){$("#gameStatus").textContent="برای بازی آنلاین اتاق بساز یا حالت ربات را انتخاب کن.";return;}if(hiddenHand===null){$("#gameStatus").textContent="اول گل را در یکی از دست‌ها پنهان کن!";return;}let robotGuess=Math.floor(Math.random()*2);let win=robotGuess!==hiddenHand;scores[win?0:1]++;updateScores();$("#oppHands").innerHTML=[0,1].map(i=>`<span class="hand">${i===hiddenHand?flower:"✊"}</span>`).join("");$("#gameStatus").textContent=win?"🎉 ربات اشتباه حدس زد؛ تو بردی!":"🤖 ربات گل را پیدا کرد!";log($("#gameStatus").textContent);hiddenHand=null;};
+$("#nextRound").onclick=()=>{hiddenHand=null;$("#oppHands").innerHTML='<span class="hand">✊</span><span class="hand">✊</span>';$("#gameStatus").textContent="دور جدید آماده است. گل را پنهان کن.";};
+$("#resetGame").onclick=()=>{scores=[0,0];updateScores();hiddenHand=null;$("#gameStatus").textContent="امتیازها صفر شدند.";if(online&&socket?.connected)socket.emit("reset-score");};
+let queryRoom=new URLSearchParams(location.search).get("room");if(queryRoom){$("#roomInput").value=queryRoom;$("#roomStatus").textContent="لینک دعوت باز شده؛ برای ورود روی «ورود به اتاق» بزن.";}
+$("#cameraOn").onclick=async()=>{try{stream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});$("#localVideo").srcObject=stream;$("#gameStatus").textContent="دوربین و میکروفون روشن شد (پیش‌نمایش فقط روی دستگاه خودت).";}catch(e){$("#gameStatus").textContent="دسترسی دوربین/میکروفون داده نشد یا صفحه HTTPS نیست.";}};$("#cameraOff").onclick=()=>{if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;$("#localVideo").srcObject=null;$("#gameStatus").textContent="دوربین و میکروفون خاموش شد.";};
+$$("[data-hand]").forEach(b=>b.onclick=()=>{selectedHand=Number(b.dataset.hand);$$("[data-hand]").forEach(x=>x.classList.remove("pick"));b.classList.add("pick");$("#gameStatus").textContent="دست "+(selectedHand+1)+" انتخاب شد. حالا «پنهان‌کردن گل» یا «حدس دست» را بزن.";});
+</script>
+</body></html>
